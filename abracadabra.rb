@@ -62,21 +62,6 @@ class Abracadabra
   #Credit for this string permutation Algorithm
   #https://gist.github.com/cyberfox/1574251
 
-  #  Use these functions if your input is an unknown string otherwise hard code into show_all_solutions
-  # def permute_sequence(sequence)
-  #   permutations(optimize(sequence.chars.to_a)).to_a
-  # end
-  #
-  # def optimize(x)
-  #   references = {}
-  #   x.each do |ch|
-  #     references[ch] ||= 0
-  #     references[ch] += 1
-  #   end
-  #   sorted = references.sort {|b,a| (a.last <=> b.last) }
-  #   sorted.inject([]) { |accum,pair| accum + [pair.first] * pair.last }
-  # end
-
   def permutations(sequence)
     return sequence if sequence.empty?
     ch = sequence.delete_at(0)
