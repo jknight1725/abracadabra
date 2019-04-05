@@ -1,4 +1,5 @@
 require 'set'
+require 'colorize'
 class Abracadabra
   attr_accessor :grid
 
@@ -6,7 +7,7 @@ class Abracadabra
     @grid = make_grid
   end
 
-  def make_grid                         #row  #index of letters
+  def make_grid                      #row  #index of letters
     grid = []
     grid.push("     a")               #0  #5
     grid.push("    b b")              #1  #4 6
@@ -39,7 +40,7 @@ class Abracadabra
   def trace(sequence)
     col = 5
     0.upto(sequence.length) do |row|
-      grid[row][col] = '*'
+      grid[row][col] = '*'.red
       sequence[row] == 'l' ? col-=1 : col+=1
     end
     print_grid
@@ -57,26 +58,24 @@ class Abracadabra
     sequence.length == 10 && sequence.count('lL') <= 5 && sequence.count('rR') <=5
   end
 
-  def number_of_solutions
-    permute_sequence('lllllrrrrr').to_a.size
-  end
 
   #Credit for this string permutation Algorithm
   #https://gist.github.com/cyberfox/1574251
 
-  def permute_sequence(sequence)
-    permutations(optimize(sequence.chars.to_a)).to_a
-  end
-
-  def optimize(x)
-    references = {}
-    x.each do |ch|
-      references[ch] ||= 0
-      references[ch] += 1
-    end
-    sorted = references.sort {|b,a| (a.last <=> b.last) }
-    sorted.inject([]) { |accum,pair| accum + [pair.first] * pair.last }
-  end
+  #  Use these functions if your input is an unknown string otherwise hard code into show_all_solutions
+  # def permute_sequence(sequence)
+  #   permutations(optimize(sequence.chars.to_a)).to_a
+  # end
+  #
+  # def optimize(x)
+  #   references = {}
+  #   x.each do |ch|
+  #     references[ch] ||= 0
+  #     references[ch] += 1
+  #   end
+  #   sorted = references.sort {|b,a| (a.last <=> b.last) }
+  #   sorted.inject([]) { |accum,pair| accum + [pair.first] * pair.last }
+  # end
 
   def permutations(sequence)
     return sequence if sequence.empty?
@@ -96,17 +95,17 @@ class Abracadabra
   # Thanks again to cyberfox for the incredible algorithm!
 
   def show_all_solutions
-    x = permute_sequence('lllllrrrrr').to_a
-    0.upto(x.length-1) do |y|
-        puts "Solution \# #{y+1}"
-        trace(x[y])
+    solutions = permutations(%w{l l l l l r r r r r}).to_a
+    0.upto(solutions.length-1) do |solution|
+        puts "Solution \# #{solution+1}"
+        trace(solutions[solution])
         self.grid = make_grid
-      end
     end
+    solutions.size
   end
 
+end
 
 
 abra = Abracadabra.new
-abra.show_all_solutions
-puts "#{abra.number_of_solutions} possible solutions"
+puts "#{abra.show_all_solutions} possible solutions"
