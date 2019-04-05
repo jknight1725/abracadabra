@@ -7,7 +7,7 @@ class Abracadabra
     @grid = make_grid
   end
 
-  def make_grid                      #row  #index of letters
+  def make_grid                     #row  #index of letters
     grid = []
     grid.push("     a")               #0  #5
     grid.push("    b b")              #1  #4 6
@@ -15,11 +15,11 @@ class Abracadabra
     grid.push("  a a a a")            #3  #2 4 6 8
     grid.push(" c c c c c")           #4  #1 3 5 7 9
     grid.push("a a a a a a")          #5  #0 2 4 6 8 10
-    grid.push(" d d d d d  ")         #6  #1 3 5 7 9
-    grid.push("  a a a a    ")        #7  #2 4 6 8
-    grid.push("   b b b      ")       #8  #3 5 7
-    grid.push("    r r        ")      #9  #4 6
-    grid.push("     a          ")     #10 #5
+    grid.push(" d d d d d")           #6  #1 3 5 7 9
+    grid.push("  a a a a")            #7  #2 4 6 8
+    grid.push("   b b b ")            #8  #3 5 7
+    grid.push("    r r ")             #9  #4 6
+    grid.push("     a ")              #10 #5
     grid
   end
 
