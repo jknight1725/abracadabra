@@ -16,3 +16,11 @@ Question. In how many ways can you spell ABRACADABRA?
                                      B   B   B
                                        R   R
                                          A
+
+
+abracadabra.rb prints out all 252 possible solutions to the problem. 
+There are 10 moves to make to reach the bottom of the puzzle
+5 of which must be lefts, 5 of which must be rights
+10! / 5! 5! = 252
+
+The program also contains methods to input your own sequence, validate that the sequence is a solution, and print that solution.
